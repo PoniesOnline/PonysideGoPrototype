@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcqma7217a2l7"]
+
+[ext_resource type="Script" uid="uid://ujmx8tjtripe" path="res://states/connected/connected.gd" id="1_idi6s"]
+[ext_resource type="Script" uid="uid://dlyg6s4ug0mgb" path="res://classes/log/log.gd" id="1_jx7w3"]
+
+[node name="Connected" type="Node"]
+script = ExtResource("1_idi6s")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(300, 0)
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -159.0
+offset_top = 256.0
+offset_right = 141.0
+offset_bottom = -130.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="password" type="LineEdit" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="username" type="LineEdit" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(300, 0)
+offset_left = 414.0
+offset_top = 331.0
+offset_right = 714.0
+offset_bottom = 371.0
+
+[node name="LogInButton" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "LogIn"
+
+[node name="RegisterButton" type="Button" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Register"
+
+[node name="Log" type="RichTextLabel" parent="CanvasLayer"]
+custom_minimum_size = Vector2(200, 0)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -267.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_jx7w3")
+metadata/_custom_type_script = ExtResource("1_jx7w3")
