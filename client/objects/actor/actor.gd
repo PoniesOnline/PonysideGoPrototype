@@ -6,15 +6,6 @@ const Scene := preload("res://objects/actor/actor.tscn")
 const Actor := preload("res://objects/actor/actor.gd")
 
 const max_speed = 300
-const accel = 1500
-const friction = 2000
-
-var actor_id: int
-var actor_name: String
-var start_x: float
-var start_y: float
-var speed: float
-var is_player: bool
 
 var input = Vector2.ZERO
 
@@ -22,6 +13,28 @@ var input = Vector2.ZERO
 @onready var _collision_shape: CircleShape2D = $CollisionShape2D.shape
 @onready var _camera: Camera2D = $Camera2D
 @onready var _sprite: Sprite2D = $Sprite
+
+var actor_id: int
+var actor_name: String
+var start_x: float
+var start_y: float
+var is_player: bool
+
+static func instatiate(actor_id: int, actor_name: String, x: float, y: float, is_player: bool) -> Actor:
+	var actor := Scene.instantiate()
+	actor.actor_id = actor_id
+	actor.actor_name = actor_name
+	actor.start_x = x
+	actor.start_y = y
+	actor.is_player = is_player
+	
+	return actor
+	
+func _ready():
+	position.x = start_x
+	position.y = start_y
+	
+	_nameplate.text = actor_name
 
 func _physics_process(delta):
 	player_movement(delta)
@@ -32,15 +45,7 @@ func get_input():
 	return input.normalized()
 	
 func player_movement(delta):
-	input = get_input()
-	
-	if input == Vector2.ZERO:
-		if velocity.length() > (friction*delta):
-			velocity -= velocity.normalized() * (friction * delta)
-		else:
-			velocity = Vector2.ZERO
-	else:
-		velocity += (input*accel*delta)
-		velocity = velocity.limit_length(max_speed)
+	velocity = max_speed * input
+
 		
 	move_and_slide()
