@@ -31,4 +31,4 @@ offset_bottom = 647.0
 texture_repeat = 2
 texture = ExtResource("2_wuwgw")
 region_enabled = true
-region_rect = Rect2(0, 0, 10000, 10000)
+region_rect = Rect2(0, 0, 100000, 100000)

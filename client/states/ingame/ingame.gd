@@ -39,6 +39,7 @@ func _on_ws_connection_closed() -> void:
 
 func _on_ws_packet_received(packet: packets.Packet) -> void:
 	var sender_id := packet.get_sender_id()
+	
 	if packet.has_chat():
 		_handle_chat_msg(sender_id, packet.get_chat())
 	elif packet.has_player():
@@ -49,14 +50,12 @@ func _handle_player_msg(sender_id: int, player_msg: packets.PlayerMessage) -> vo
 	var actor_name := player_msg.get_name()
 	var x := player_msg.get_x()
 	var y := player_msg.get_y()
-	var radius := player_msg.get_radius()
-	var speed := player_msg.get_speed()
 	
 	var is_player := actor_id == GameManager.client_id
 	
 	if actor_id not in _players:
 		# This is a new player, so we need to create a new actor
-		var actor := Actor.instatiate(actor_id, actor_name, x, y, radius, speed, is_player)
+		var actor := Actor.instatiate(actor_id, actor_name, x, y, is_player)
 		_world.add_child(actor)
 		_players[actor_id] = actor
 	else:
@@ -65,3 +64,24 @@ func _handle_player_msg(sender_id: int, player_msg: packets.PlayerMessage) -> vo
 		actor.position.x = x
 		actor.position.y = y
 		
+func _update_player(actor_id: int, actor_name: String, x: float, y: float, is_player: bool, input) -> void:
+	# This is an existing player, so we need to update their position
+	var actor := _players[actor_id]
+	var packet := packets.Packet.new()
+	var player_input_message := packet.new_player_input()
+	
+	input.x = int(Input.is_action_pressed("ui_right"))-int(Input.is_action_pressed("ui_left"))
+	input.y = int(Input.is_action_pressed("ui_down"))-int(Input.is_action_pressed("ui_up"))
+
+	player_input_message.set_dx(input.x)
+	player_input_message.set_dy(input.y)
+	WS.send(packet)
+	
+	if actor.position.distance_squared_to(Vector2(x, y)) > 100:
+		actor.position.x = x
+		actor.position.y = y
+	
+	if not is_player:
+		actor.max_speed
+		
+	
