@@ -1,10 +1,9 @@
 extends Node
 
 const packets := preload("res://packets.gd")
-
 const Actor := preload("res://objects/actor/actor.gd")
 
-var _players: Dictionary[int, Actor]
+var _players: Dictionary[int, Actor] = {}
 
 @onready var _line_edit: LineEdit = $UI/LineEdit
 @onready var _log: Log = $UI/Log
@@ -33,7 +32,6 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 		_log.chat("You", new_text)
 	_line_edit.clear()
 	
-	
 func _on_ws_connection_closed() -> void:
 	_log.warning("Connection closed")
 
@@ -44,7 +42,7 @@ func _on_ws_packet_received(packet: packets.Packet) -> void:
 		_handle_chat_msg(sender_id, packet.get_chat())
 	elif packet.has_player():
 		_handle_player_msg(sender_id, packet.get_player())
-	
+
 func _handle_player_msg(sender_id: int, player_msg: packets.PlayerMessage) -> void:
 	var actor_id := player_msg.get_id()
 	var actor_name := player_msg.get_name()
@@ -55,7 +53,7 @@ func _handle_player_msg(sender_id: int, player_msg: packets.PlayerMessage) -> vo
 	
 	if actor_id not in _players:
 		# This is a new player, so we need to create a new actor
-		var actor := Actor.instatiate(actor_id, actor_name, x, y, is_player)
+		var actor := Actor.instantiate(actor_id, actor_name, x, y, is_player)
 		_world.add_child(actor)
 		_players[actor_id] = actor
 	else:
@@ -64,14 +62,14 @@ func _handle_player_msg(sender_id: int, player_msg: packets.PlayerMessage) -> vo
 		actor.position.x = x
 		actor.position.y = y
 		
-func _update_player(actor_id: int, actor_name: String, x: float, y: float, is_player: bool, input) -> void:
+func _update_player(actor_id: int, actor_name: String, x: float, y: float, is_player: bool, input: Vector2) -> void:
 	# This is an existing player, so we need to update their position
 	var actor := _players[actor_id]
 	var packet := packets.Packet.new()
 	var player_input_message := packet.new_player_input()
 	
-	input.x = int(Input.is_action_pressed("ui_right"))-int(Input.is_action_pressed("ui_left"))
-	input.y = int(Input.is_action_pressed("ui_down"))-int(Input.is_action_pressed("ui_up"))
+	input.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
+	input.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
 
 	player_input_message.set_dx(input.x)
 	player_input_message.set_dy(input.y)
@@ -83,5 +81,3 @@ func _update_player(actor_id: int, actor_name: String, x: float, y: float, is_pl
 	
 	if not is_player:
 		actor.max_speed
-		
-	
