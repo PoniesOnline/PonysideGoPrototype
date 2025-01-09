@@ -4,7 +4,8 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"math"
+
+	//"math"
 	"math/rand/v2"
 	"server/internal/server"
 	"server/internal/server/objects"
@@ -75,10 +76,9 @@ func (g *InGame) handlePlayerInput(senderId uint64, message *packets.Packet_Play
 		return
 	}
 
-	var dx = float64(message.PlayerInput.Dx)
-	var dy = float64(message.PlayerInput.Dy)
-	g.player.Direction = math.Atan2(dy, dx)
-	g.player.Speed = 300 // This needs to match `max_speed` in Actor.gd
+	g.player.DirectionX = float64(message.PlayerInput.Dx)
+	g.player.DirectionY = float64(message.PlayerInput.Dy)
+	g.player.Speed = 300
 
 	// If this is the first time receiving a player direction message from our client, start the player update loop
 	if g.cancelPlayerUpdateLoop == nil {
@@ -112,8 +112,8 @@ func (g *InGame) playerUpdateLoop(ctx context.Context) {
 }
 
 func (g *InGame) syncPlayer(delta float64) {
-	newX := g.player.X + g.player.Speed*math.Cos(g.player.Direction)*delta
-	newY := g.player.Y + g.player.Speed*math.Sin(g.player.Direction)*delta
+	newX := g.player.X + g.player.DirectionX*g.player.Speed*delta
+	newY := g.player.Y + g.player.DirectionY*g.player.Speed*delta
 
 	g.player.X = newX
 	g.player.Y = newY

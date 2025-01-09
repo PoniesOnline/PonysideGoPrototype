@@ -54,6 +54,6 @@ func player_movement(delta):
 func send_movement():
 	var packet = packets.Packet.new()
 	var player_input_message = packet.new_player_input()
-	player_input_message.set_dx(int(position.x))
-	player_input_message.set_dy(int(position.y))
+	player_input_message.set_dx(input.x)
+	player_input_message.set_dy(input.y)
 	WS.send(packet)
