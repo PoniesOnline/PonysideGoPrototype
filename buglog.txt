@@ -1,3 +1,10 @@
 Bug Log
 
-1. Live chat is currently not working.
+1. Live chat is currently not working. RESOLVED
+2. Movement is not working RESOLVED
+3. Players can not see each other RESOLVED
+4. Player movement is not smooth
+5. server is jittery
+6. players not dissapearing after disconecting
+7. players name severly offset
+8. User is remaining connected in world after they log off

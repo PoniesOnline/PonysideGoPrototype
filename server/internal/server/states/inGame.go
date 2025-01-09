@@ -75,8 +75,10 @@ func (g *InGame) handlePlayerInput(senderId uint64, message *packets.Packet_Play
 		return
 	}
 
-	g.player.X = float64(message.PlayerInput.Dx)
-	g.player.Y = float64(message.PlayerInput.Dy)
+	var dx = float64(message.PlayerInput.Dx)
+	var dy = float64(message.PlayerInput.Dy)
+	g.player.Direction = math.Atan2(dy, dx)
+	g.player.Speed = 300 // This needs to match `max_speed` in Actor.gd
 
 	// If this is the first time receiving a player direction message from our client, start the player update loop
 	if g.cancelPlayerUpdateLoop == nil {
