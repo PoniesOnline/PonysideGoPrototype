@@ -9,6 +9,9 @@ var _players: Dictionary[int, Actor] = {}
 @onready var _log: Log = $UI/Log
 @onready var _world: Node2D = $World
 
+# Variable to track packet sending status
+var is_sending_packet = false
+
 func _ready() -> void:
 	WS.connection_closed.connect(_on_ws_connection_closed)
 	WS.packet_received.connect(_on_ws_packet_received)
@@ -21,6 +24,11 @@ func _handle_chat_msg(sender_id: int, chat_msg: packets.ChatMessage) -> void:
 		_log.chat(actor.actor_name, chat_msg.get_msg())
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
+	if is_sending_packet:
+		_log.error("Already sending a packet, please wait.")
+		return
+	
+	is_sending_packet = true
 	var packet := packets.Packet.new()
 	var chat_msg := packet.new_chat()
 	chat_msg.set_msg(new_text)
@@ -31,6 +39,7 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 	else:
 		_log.chat("You", new_text)
 	_line_edit.clear()
+	is_sending_packet = false
 	
 func _on_ws_connection_closed() -> void:
 	_log.warning("Connection closed")
@@ -63,6 +72,11 @@ func _handle_player_msg(sender_id: int, player_msg: packets.PlayerMessage) -> vo
 		actor.position.y = y
 		
 func _update_player(actor_id: int, actor_name: String, x: float, y: float, is_player: bool, input: Vector2) -> void:
+	if is_sending_packet:
+		return
+	
+	is_sending_packet = true
+
 	# This is an existing player, so we need to update their position
 	var actor := _players[actor_id]
 	var packet := packets.Packet.new()
@@ -81,3 +95,5 @@ func _update_player(actor_id: int, actor_name: String, x: float, y: float, is_pl
 	
 	if not is_player:
 		actor.max_speed
+	
+	is_sending_packet = false
