@@ -8,6 +8,7 @@ const Actor := preload("res://objects/actor/actor.gd")
 const max_speed = 300
 
 var input = Vector2.ZERO
+var last_sent_input = Vector2.ZERO
 
 @onready var _nameplate: Label = $Nameplate
 @onready var _collision_shape: CircleShape2D = $CollisionShape2D.shape
@@ -29,7 +30,7 @@ static func instantiate(actor_id: int, actor_name: String, x: float, y: float, i
 	actor.is_player = is_player
 	
 	return actor
-	
+
 func _ready():
 	position.x = start_x
 	position.y = start_y
@@ -40,9 +41,10 @@ func _physics_process(delta):
 	if is_player:
 		get_input()
 		player_movement(delta)
-		if input != Vector2.ZERO:
+		if input != last_sent_input:
 			send_movement()
-		
+			last_sent_input = input
+
 func get_input():
 	input.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	input.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
