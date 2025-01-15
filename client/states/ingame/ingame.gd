@@ -9,7 +9,7 @@ var _players: Dictionary[int, Actor] = {}
 @onready var _log: Log = $UI/Log
 @onready var _world: Node2D = $World
 
-# Variable to track packet sending status
+# Variable to track packet sending status.
 var is_sending_packet = false
 
 func _ready() -> void:
