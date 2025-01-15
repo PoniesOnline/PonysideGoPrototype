@@ -1008,12 +1008,12 @@ class PlayerInputMessage:
 	func _init():
 		var service
 		
-		_dx = PBField.new("dx", PB_DATA_TYPE.INT32, PB_RULE.OPTIONAL, 1, true, DEFAULT_VALUES_3[PB_DATA_TYPE.INT32])
+		_dx = PBField.new("dx", PB_DATA_TYPE.FLOAT, PB_RULE.OPTIONAL, 1, true, DEFAULT_VALUES_3[PB_DATA_TYPE.FLOAT])
 		service = PBServiceField.new()
 		service.field = _dx
 		data[_dx.tag] = service
 		
-		_dy = PBField.new("dy", PB_DATA_TYPE.INT32, PB_RULE.OPTIONAL, 2, true, DEFAULT_VALUES_3[PB_DATA_TYPE.INT32])
+		_dy = PBField.new("dy", PB_DATA_TYPE.FLOAT, PB_RULE.OPTIONAL, 2, true, DEFAULT_VALUES_3[PB_DATA_TYPE.FLOAT])
 		service = PBServiceField.new()
 		service.field = _dy
 		data[_dy.tag] = service
@@ -1021,21 +1021,21 @@ class PlayerInputMessage:
 	var data = {}
 	
 	var _dx: PBField
-	func get_dx() -> int:
+	func get_dx() -> float:
 		return _dx.value
 	func clear_dx() -> void:
 		data[1].state = PB_SERVICE_STATE.UNFILLED
-		_dx.value = DEFAULT_VALUES_3[PB_DATA_TYPE.INT32]
-	func set_dx(value : int) -> void:
+		_dx.value = DEFAULT_VALUES_3[PB_DATA_TYPE.FLOAT]
+	func set_dx(value : float) -> void:
 		_dx.value = value
 	
 	var _dy: PBField
-	func get_dy() -> int:
+	func get_dy() -> float:
 		return _dy.value
 	func clear_dy() -> void:
 		data[2].state = PB_SERVICE_STATE.UNFILLED
-		_dy.value = DEFAULT_VALUES_3[PB_DATA_TYPE.INT32]
-	func set_dy(value : int) -> void:
+		_dy.value = DEFAULT_VALUES_3[PB_DATA_TYPE.FLOAT]
+	func set_dy(value : float) -> void:
 		_dy.value = value
 	
 	func _to_string() -> String:

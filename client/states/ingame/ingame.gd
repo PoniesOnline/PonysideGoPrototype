@@ -84,26 +84,21 @@ func _update_player(actor_id: int, actor_name: String, x: float, y: float, is_pl
 	
 	input.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	input.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
-
-	print("Input before normalization: ", input) #DEBUG
-
+	
 	# Normalize the input vector
 	if input.length() != 0:
 		input = input.normalized()
 		
-	print("Input after normalization: ", input) #DEBUG
 
 	player_input_message.set_dx(input.x)
 	player_input_message.set_dy(input.y)
 	WS.send(packet)
 	
-	print("Position before update: ", actor.position) #DEBUG
 	
 	if actor.position.distance_squared_to(Vector2(x, y)) > 100:
 		actor.position.x = x
 		actor.position.y = y
 	
-	print("Position after update: ", actor.position) #DEBUG
 	
 	if not is_player:
 		actor.max_speed
