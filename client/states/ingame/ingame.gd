@@ -9,7 +9,7 @@ var _players: Dictionary[int, Actor] = {}
 @onready var _log: Log = $UI/Log
 @onready var _world: Node2D = $World
 
-# Variable to track packet sending status
+# Variable to track packet sending status.
 var is_sending_packet = false
 
 func _ready() -> void:
@@ -82,54 +82,29 @@ func _update_player(actor_id: int, actor_name: String, x: float, y: float, is_pl
 	var packet := packets.Packet.new()
 	var player_input_message := packet.new_player_input()
 	
-<<<<<<< HEAD
-<<<<<<< HEAD
-	input.x = float(Input.is_action_pressed("ui_right")) - float(Input.is_action_pressed("ui_left"))
-	input.y = float(Input.is_action_pressed("ui_down")) - float(Input.is_action_pressed("ui_up"))
-	
+	input.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
+	input.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
+
+	print("Input before normalization: ", input) #DEBUG
+
 	# Normalize the input vector
 	if input.length() != 0:
 		input = input.normalized()
 		
-=======
-	input.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
-	input.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
-
-	# Normalize the input vector
-	if input.length() != 0:
-		input = input.normalized()
->>>>>>> parent of 5e94833 (PrototypeV8)
-=======
-	input.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
-	input.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
-
-	# Normalize the input vector
-	if input.length() != 0:
-		input = input.normalized()
->>>>>>> parent of 5e94833 (PrototypeV8)
+	print("Input after normalization: ", input) #DEBUG
 
 	player_input_message.set_dx(input.x)
 	player_input_message.set_dy(input.y)
 	WS.send(packet)
 	
-<<<<<<< HEAD
-<<<<<<< HEAD
+	print("Position before update: ", actor.position) #DEBUG
 	
-=======
->>>>>>> parent of 5e94833 (PrototypeV8)
-=======
->>>>>>> parent of 5e94833 (PrototypeV8)
 	if actor.position.distance_squared_to(Vector2(x, y)) > 100:
 		actor.position.x = x
 		actor.position.y = y
 	
-<<<<<<< HEAD
-<<<<<<< HEAD
+	print("Position after update: ", actor.position) #DEBUG
 	
-=======
->>>>>>> parent of 5e94833 (PrototypeV8)
-=======
->>>>>>> parent of 5e94833 (PrototypeV8)
 	if not is_player:
 		actor.max_speed
 	
