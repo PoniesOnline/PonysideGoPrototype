@@ -9,10 +9,10 @@ const max_speed = 300
 
 var input = Vector2.ZERO
 var last_sent_input = Vector2.ZERO
-var previous_input = Vector2.ZERO #DEBUG
-var previous_velocity = Vector2.ZERO #DEBUG
-var previous_position = Vector2.ZERO #DEBUG
-const POSITION_THRESHOLD = 10 #DEBUG
+#var previous_input = Vector2.ZERO #DEBUG
+#var previous_velocity = Vector2.ZERO #DEBUG
+#var previous_position = Vector2.ZERO #DEBUG
+#const POSITION_THRESHOLD = 10 #DEBUG
 
 @onready var _nameplate: Label = $Nameplate
 @onready var _collision_shape: CircleShape2D = $CollisionShape2D.shape
@@ -54,23 +54,23 @@ func get_input():
 	input.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
 	input = input#.normalized()
 	#Debug Print
-	if input != previous_input:
-		print("Input: ", input)  # Print only when the input changes
-		previous_input = input  # Update the previous input
+	#if input != previous_input:
+		#print("Input: ", input)  # Print only when the input changes
+		#previous_input = input  # Update the previous input
 	
 func player_movement(delta):
 	velocity = max_speed * input
 	
 	#DEBUG PRINT
-	if velocity != previous_velocity:
-		print("Velocity: ", velocity)  # Print only when the velocity changes
-		previous_velocity = velocity  # Update the previous velocity
+	#if velocity != previous_velocity:
+		#print("Velocity: ", velocity)  # Print only when the velocity changes
+		#previous_velocity = velocity  # Update the previous velocity
 	
 	move_and_slide()
 	 # DEBUG PRINT
-	if position.distance_to(previous_position) > POSITION_THRESHOLD:
-			print("Position: ", position)  # Print only when the position changes significantly
-			previous_position = position  # Update the previous position
+	#if position.distance_to(previous_position) > POSITION_THRESHOLD:
+			#print("Position: ", position)  # Print only when the position changes significantly
+			#previous_position = position  # Update the previous position
 	
 
 func send_movement():

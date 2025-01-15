@@ -29,7 +29,7 @@ func connect_to_url(url: String) -> int:
 func send(packet: packets.Packet) -> int:
 	packet.set_sender_id(0)
 	var data := packet.to_bytes()
-	print("Sending packet:", data)  # Print statement to log sent packet
+	#print("Sending packet:", data)  # Print statement to log sent packet
 	return socket.send(data)
 
 
