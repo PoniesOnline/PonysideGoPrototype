@@ -82,6 +82,7 @@ func _update_player(actor_id: int, actor_name: String, x: float, y: float, is_pl
 	var packet := packets.Packet.new()
 	var player_input_message := packet.new_player_input()
 	
+<<<<<<< HEAD
 	input.x = float(Input.is_action_pressed("ui_right")) - float(Input.is_action_pressed("ui_left"))
 	input.y = float(Input.is_action_pressed("ui_down")) - float(Input.is_action_pressed("ui_up"))
 	
@@ -89,17 +90,31 @@ func _update_player(actor_id: int, actor_name: String, x: float, y: float, is_pl
 	if input.length() != 0:
 		input = input.normalized()
 		
+=======
+	input.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
+	input.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
+
+	# Normalize the input vector
+	if input.length() != 0:
+		input = input.normalized()
+>>>>>>> parent of 5e94833 (PrototypeV8)
 
 	player_input_message.set_dx(input.x)
 	player_input_message.set_dy(input.y)
 	WS.send(packet)
 	
+<<<<<<< HEAD
 	
+=======
+>>>>>>> parent of 5e94833 (PrototypeV8)
 	if actor.position.distance_squared_to(Vector2(x, y)) > 100:
 		actor.position.x = x
 		actor.position.y = y
 	
+<<<<<<< HEAD
 	
+=======
+>>>>>>> parent of 5e94833 (PrototypeV8)
 	if not is_player:
 		actor.max_speed
 	

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	"math"
+	//"math"
 	"math/rand/v2"
 	"server/internal/server"
 	"server/internal/server/objects"
@@ -76,18 +76,8 @@ func (g *InGame) handlePlayerInput(senderId uint64, message *packets.Packet_Play
 		return
 	}
 
-	// Calculate the magnitude of the direction vector
-	magnitude := math.Sqrt(float64(message.PlayerInput.Dx*message.PlayerInput.Dx + message.PlayerInput.Dy*message.PlayerInput.Dy))
-
-	// Normalize the directional input
-	if magnitude != 0 {
-		g.player.DirectionX = float64(message.PlayerInput.Dx) / magnitude
-		g.player.DirectionY = float64(message.PlayerInput.Dy) / magnitude
-	} else {
-		g.player.DirectionX = 0
-		g.player.DirectionY = 0
-	}
-
+	g.player.DirectionX = float64(message.PlayerInput.Dx)
+	g.player.DirectionY = float64(message.PlayerInput.Dy)
 	g.player.Speed = 300
 
 	// If this is the first time receiving a player direction message from our client, start the player update loop
