@@ -85,6 +85,10 @@ func _update_player(actor_id: int, actor_name: String, x: float, y: float, is_pl
 	input.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	input.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
 
+	# Normalize the input vector
+	if input.length() != 0:
+		input = input.normalized()
+
 	player_input_message.set_dx(input.x)
 	player_input_message.set_dy(input.y)
 	WS.send(packet)
