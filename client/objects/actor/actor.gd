@@ -52,7 +52,7 @@ func _physics_process(delta):
 func get_input():
 	input.x = int(Input.is_action_pressed("ui_right")) - int (Input.is_action_pressed("ui_left"))
 	input.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
-	input = input.normalized()
+	input = input#.normalized()
 	#Debug Print
 	if input != previous_input:
 		print("Input: ", input)  # Print only when the input changes
