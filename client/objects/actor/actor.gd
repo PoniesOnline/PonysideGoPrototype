@@ -50,8 +50,8 @@ func _physics_process(delta):
 			last_sent_input = input
 
 func get_input():
-	input.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
-	input.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
+	input.x = float(Input.is_action_pressed("ui_right")) - float(Input.is_action_pressed("ui_left"))
+	input.y = float(Input.is_action_pressed("ui_down")) - float(Input.is_action_pressed("ui_up"))
 	input = input.normalized()
 	#Debug Print
 	if input != previous_input:
@@ -76,6 +76,6 @@ func player_movement(delta):
 func send_movement():
 	var packet = packets.Packet.new()
 	var player_input_message = packet.new_player_input()
-	player_input_message.set_dx(input.x)
-	player_input_message.set_dy(input.y)
+	player_input_message.set_dx(float(input.x))
+	player_input_message.set_dy(float(input.y))
 	WS.send(packet)

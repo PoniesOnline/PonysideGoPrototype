@@ -82,8 +82,8 @@ func _update_player(actor_id: int, actor_name: String, x: float, y: float, is_pl
 	var packet := packets.Packet.new()
 	var player_input_message := packet.new_player_input()
 	
-	input.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
-	input.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
+	input.x = float(Input.is_action_pressed("ui_right")) - float(Input.is_action_pressed("ui_left"))
+	input.y = float(Input.is_action_pressed("ui_down")) - float(Input.is_action_pressed("ui_up"))
 	
 	# Normalize the input vector
 	if input.length() != 0:
