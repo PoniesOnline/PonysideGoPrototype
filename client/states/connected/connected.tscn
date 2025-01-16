@@ -9,23 +9,35 @@
 script = ExtResource("1_idi6s")
 
 [node name="Splash Screen" type="HBoxContainer" parent="."]
-offset_left = 9.0
-offset_top = 2.0
-offset_right = 1155.0
-offset_bottom = 647.0
+anchors_preset = -1
+anchor_left = 0.008
+anchor_top = 0.003
+anchor_right = 1.003
+anchor_bottom = 0.998
+offset_left = -8.216
+offset_top = -1.944
+offset_right = -1.45605
+offset_bottom = 2.29596
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Splash Screen"]
 layout_mode = 2
+size_flags_horizontal = 6
 texture = ExtResource("2_kh2bm")
 expand_mode = 3
 stretch_mode = 4
 
 [node name="Logo" type="HBoxContainer" parent="."]
-offset_left = 209.0
+anchors_preset = -1
+anchor_left = 0.007
+anchor_right = 1.0
+anchor_bottom = 0.234
+offset_left = 200.936
 offset_top = -36.0
-offset_right = 887.0
-offset_bottom = 291.0
+offset_right = -265.0
+offset_bottom = 139.368
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
 
 [node name="TextureRect2" type="TextureRect" parent="Logo"]
@@ -38,22 +50,25 @@ stretch_mode = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI"]
 custom_minimum_size = Vector2(300, 0)
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = -1
+anchor_left = 0.492
+anchor_right = 0.492
 anchor_bottom = 1.0
-offset_left = -159.0
+offset_left = -149.784
 offset_top = 256.0
-offset_right = 141.0
+offset_right = 150.216
 offset_bottom = -130.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 8
 
 [node name="Username" type="LineEdit" parent="UI/VBoxContainer"]
 layout_mode = 2
+placeholder_text = "Username"
 
 [node name="Password" type="LineEdit" parent="UI/VBoxContainer"]
 layout_mode = 2
+placeholder_text = "Password"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
