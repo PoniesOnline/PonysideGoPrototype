@@ -10,6 +10,7 @@ const max_speed = 300
 var input = Vector2.ZERO
 var last_sent_input = Vector2.ZERO
 var previous_x = 0
+var previous_y = 0
 #var previous_input = Vector2.ZERO #DEBUG
 #var previous_velocity = Vector2.ZERO #DEBUG
 #var previous_position = Vector2.ZERO #DEBUG
@@ -54,6 +55,13 @@ func  _physics_process(delta):
 	if input.x != previous_x and input.x != 0:
 		_sprite.flip_h = input.x == -1
 		previous_x = input.x
+
+	if input.x or input.y != 0:
+		if not _animation.is_playing():
+			_animation.play("walk")
+	else:
+		if _animation.is_playing():
+			_animation.stop()
 
 func get_input():
 	input.x = int(Input.is_action_pressed("ui_right")) - int (Input.is_action_pressed("ui_left"))
