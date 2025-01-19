@@ -4,7 +4,19 @@ Bug Log
 2. Movement is not working RESOLVED
 3. Players can not see each other RESOLVED
 4. Player movement is not smooth
-5. server is jittery
+5. server is jittery RESOLVED
 6. players not dissapearing after disconecting
-7. players name severly offset
-8. User is remaining connected in world after they log off
+7. players name severly offset RESOLVED
+8. Log In Screen is offset RESOLVED
+9. Game is filling up the buffer in chrome RESOLVED
+
+
+Things To Do
+1 Login Overhaul to incorperate OAuth
+2 Switch over to pony sprites
+3 Build in a character select
+4 Incorperate objects for collision
+5 work on the last bit of movemenbt jitter
+6 Build a small test world
+7 Work on disconnecting users
+8 Work on it filling up the chrome buffer COMPLETE

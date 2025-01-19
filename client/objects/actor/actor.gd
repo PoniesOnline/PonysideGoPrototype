@@ -9,6 +9,7 @@ const max_speed = 300
 
 var input = Vector2.ZERO
 var last_sent_input = Vector2.ZERO
+var previous_x = 0
 #var previous_input = Vector2.ZERO #DEBUG
 #var previous_velocity = Vector2.ZERO #DEBUG
 #var previous_position = Vector2.ZERO #DEBUG
@@ -18,6 +19,7 @@ var last_sent_input = Vector2.ZERO
 @onready var _collision_shape: CircleShape2D = $CollisionShape2D.shape
 @onready var _camera: Camera2D = $Camera2D
 @onready var _sprite: Sprite2D = $Sprite
+@onready var _animation: AnimationPlayer = $AnimationPlayer
 
 var actor_id: int
 var actor_name: String
@@ -41,13 +43,17 @@ func _ready():
 	
 	_nameplate.text = actor_name
 
-func _physics_process(delta):
+func  _physics_process(delta):
 	if is_player:
 		get_input()
 		player_movement(delta)
 		if input != last_sent_input:
 			send_movement()
 			last_sent_input = input
+	
+	if input.x != previous_x and input.x != 0:
+		_sprite.flip_h = input.x == -1
+		previous_x = input.x
 
 func get_input():
 	input.x = int(Input.is_action_pressed("ui_right")) - int (Input.is_action_pressed("ui_left"))
@@ -57,7 +63,7 @@ func get_input():
 	#if input != previous_input:
 		#print("Input: ", input)  # Print only when the input changes
 		#previous_input = input  # Update the previous input
-	
+
 func player_movement(delta):
 	velocity = max_speed * input
 	

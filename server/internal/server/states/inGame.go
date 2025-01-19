@@ -112,6 +112,9 @@ func (g *InGame) playerUpdateLoop(ctx context.Context) {
 }
 
 func (g *InGame) syncPlayer(delta float64) {
+	if g.player.DirectionX == 0 && g.player.DirectionY == 0 {
+		return
+	}
 	newX := g.player.X + g.player.DirectionX*g.player.Speed*delta
 	newY := g.player.Y + g.player.DirectionY*g.player.Speed*delta
 
