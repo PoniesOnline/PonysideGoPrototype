@@ -10,7 +10,7 @@ func _ready() -> void:
 	WS.packet_received.connect(_on_ws_packet_received)
 	
 	_log.info("Connecting to server...")
-	WS.connect_to_url("ws://206.196.97.238:8080/ws")
+	WS.connect_to_url("ws://127.0.0.1:8080/ws")
 	
 func _on_ws_connected_to_server() -> void:
 	_log.success("Connected successfully")

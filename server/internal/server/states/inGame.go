@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 
-	//"math"
 	"math/rand/v2"
 	"server/internal/server"
 	"server/internal/server/objects"

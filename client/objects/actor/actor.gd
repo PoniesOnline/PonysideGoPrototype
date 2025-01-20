@@ -92,4 +92,6 @@ func send_movement():
 	var player_input_message = packet.new_player_input()
 	player_input_message.set_dx(input.x)
 	player_input_message.set_dy(input.y)
+	player_input_message.set_animation(_animation.current_animation)
+	player_input_message.set_flip_h(_sprite.flip_h)
 	WS.send(packet)

@@ -10,7 +10,15 @@ message RegisterRequestMessage { string username = 1; string password = 2; }
 message OkResponseMessage { }
 message DenyResponseMessage { string reason = 1; }
 message PlayerMessage { uint64 id = 1; string name = 2; double x = 3; double y = 4; }
-message PlayerInputMessage { int32 dx = 1; int32 dy = 2; }
+
+message PlayerInputMessage { 
+    int32 dx = 1; 
+    int32 dy = 2; 
+    double position_x = 3; //DEPRICATED?
+    double position_y = 4; //DEPRICATED?
+    string animation = 5;
+    bool flip_h = 6;
+}
 
 message Packet {
     uint64 sender_id = 1;

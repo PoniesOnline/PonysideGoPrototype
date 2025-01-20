@@ -1018,6 +1018,26 @@ class PlayerInputMessage:
 		service.field = _dy
 		data[_dy.tag] = service
 		
+		_position_x = PBField.new("position_x", PB_DATA_TYPE.DOUBLE, PB_RULE.OPTIONAL, 3, true, DEFAULT_VALUES_3[PB_DATA_TYPE.DOUBLE])
+		service = PBServiceField.new()
+		service.field = _position_x
+		data[_position_x.tag] = service
+		
+		_position_y = PBField.new("position_y", PB_DATA_TYPE.DOUBLE, PB_RULE.OPTIONAL, 4, true, DEFAULT_VALUES_3[PB_DATA_TYPE.DOUBLE])
+		service = PBServiceField.new()
+		service.field = _position_y
+		data[_position_y.tag] = service
+		
+		_animation = PBField.new("animation", PB_DATA_TYPE.STRING, PB_RULE.OPTIONAL, 5, true, DEFAULT_VALUES_3[PB_DATA_TYPE.STRING])
+		service = PBServiceField.new()
+		service.field = _animation
+		data[_animation.tag] = service
+		
+		_flip_h = PBField.new("flip_h", PB_DATA_TYPE.BOOL, PB_RULE.OPTIONAL, 6, true, DEFAULT_VALUES_3[PB_DATA_TYPE.BOOL])
+		service = PBServiceField.new()
+		service.field = _flip_h
+		data[_flip_h.tag] = service
+		
 	var data = {}
 	
 	var _dx: PBField
@@ -1037,6 +1057,42 @@ class PlayerInputMessage:
 		_dy.value = DEFAULT_VALUES_3[PB_DATA_TYPE.INT32]
 	func set_dy(value : int) -> void:
 		_dy.value = value
+	
+	var _position_x: PBField
+	func get_position_x() -> float:
+		return _position_x.value
+	func clear_position_x() -> void:
+		data[3].state = PB_SERVICE_STATE.UNFILLED
+		_position_x.value = DEFAULT_VALUES_3[PB_DATA_TYPE.DOUBLE]
+	func set_position_x(value : float) -> void:
+		_position_x.value = value
+	
+	var _position_y: PBField
+	func get_position_y() -> float:
+		return _position_y.value
+	func clear_position_y() -> void:
+		data[4].state = PB_SERVICE_STATE.UNFILLED
+		_position_y.value = DEFAULT_VALUES_3[PB_DATA_TYPE.DOUBLE]
+	func set_position_y(value : float) -> void:
+		_position_y.value = value
+	
+	var _animation: PBField
+	func get_animation() -> String:
+		return _animation.value
+	func clear_animation() -> void:
+		data[5].state = PB_SERVICE_STATE.UNFILLED
+		_animation.value = DEFAULT_VALUES_3[PB_DATA_TYPE.STRING]
+	func set_animation(value : String) -> void:
+		_animation.value = value
+	
+	var _flip_h: PBField
+	func get_flip_h() -> bool:
+		return _flip_h.value
+	func clear_flip_h() -> void:
+		data[6].state = PB_SERVICE_STATE.UNFILLED
+		_flip_h.value = DEFAULT_VALUES_3[PB_DATA_TYPE.BOOL]
+	func set_flip_h(value : bool) -> void:
+		_flip_h.value = value
 	
 	func _to_string() -> String:
 		return PBPacker.message_to_string(data)
