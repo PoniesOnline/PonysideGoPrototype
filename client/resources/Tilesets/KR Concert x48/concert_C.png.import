@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0tasa8kd21k3"
-path="res://.godot/imported/Godot_icon.svg.png-b06ad439bc8a7a3dd1acbbb9e955ffb0.ctex"
+uid="uid://ltyspk401se"
+path="res://.godot/imported/concert_C.png-9d73c91f8aee5f2eb2b07b65da7f4607.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Tilesets/Player Sprite/Godot_icon.svg.png"
-dest_files=["res://.godot/imported/Godot_icon.svg.png-b06ad439bc8a7a3dd1acbbb9e955ffb0.ctex"]
+source_file="res://resources/tilesets/KR Concert x48/concert_C.png"
+dest_files=["res://.godot/imported/concert_C.png-9d73c91f8aee5f2eb2b07b65da7f4607.ctex"]
 
 [params]
 

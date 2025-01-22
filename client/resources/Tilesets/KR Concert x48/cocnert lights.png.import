@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0tasa8kd21k3"
-path="res://.godot/imported/Godot_icon.svg.png-b06ad439bc8a7a3dd1acbbb9e955ffb0.ctex"
+uid="uid://b7xh36mhx1muq"
+path="res://.godot/imported/cocnert lights.png-a2a7809d19547bd21991b7fef8a73a79.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Tilesets/Player Sprite/Godot_icon.svg.png"
-dest_files=["res://.godot/imported/Godot_icon.svg.png-b06ad439bc8a7a3dd1acbbb9e955ffb0.ctex"]
+source_file="res://resources/tilesets/KR Concert x48/cocnert lights.png"
+dest_files=["res://.godot/imported/cocnert lights.png-a2a7809d19547bd21991b7fef8a73a79.ctex"]
 
 [params]
 

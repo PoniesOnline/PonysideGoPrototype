@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0tasa8kd21k3"
-path="res://.godot/imported/Godot_icon.svg.png-b06ad439bc8a7a3dd1acbbb9e955ffb0.ctex"
+uid="uid://c4o2j4r2g2kax"
+path="res://.godot/imported/concert instruments 2.png-87a15d33f718d98dc4f9a3db3c91ba48.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Tilesets/Player Sprite/Godot_icon.svg.png"
-dest_files=["res://.godot/imported/Godot_icon.svg.png-b06ad439bc8a7a3dd1acbbb9e955ffb0.ctex"]
+source_file="res://resources/Tilesets/KR Concert x48/concert instruments 2.png"
+dest_files=["res://.godot/imported/concert instruments 2.png-87a15d33f718d98dc4f9a3db3c91ba48.ctex"]
 
 [params]
 

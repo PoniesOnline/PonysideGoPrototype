@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0tasa8kd21k3"
-path="res://.godot/imported/Godot_icon.svg.png-b06ad439bc8a7a3dd1acbbb9e955ffb0.ctex"
+uid="uid://b7ew1v2xq16cv"
+path="res://.godot/imported/Collisions.png-76acc8052b79665057a9babce9912270.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Tilesets/Player Sprite/Godot_icon.svg.png"
-dest_files=["res://.godot/imported/Godot_icon.svg.png-b06ad439bc8a7a3dd1acbbb9e955ffb0.ctex"]
+source_file="res://resources/Tilesets/Collisions.png"
+dest_files=["res://.godot/imported/Collisions.png-76acc8052b79665057a9babce9912270.ctex"]
 
 [params]
 
